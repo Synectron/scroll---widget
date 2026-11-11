@@ -1,56 +1,47 @@
-# Insta Scroll
+# Insta Scroll (Expo)
 
-Android widget that counts how many times you scroll in the **Instagram app** and shows the total on a floating bubble + home-screen widget.
+Mobile Expo app that opens Instagram in a WebView and counts every scroll. A floating badge shows today’s total; Stats keeps a 7-day history.
 
-## What you get
+## Install on your phone (easiest)
 
-- **Floating overlay** over Instagram with today’s scroll count (draggable, minimizable)
-- **Home screen widget** with the same daily count
-- **In-app dashboard** with today / all-time / last 7 days
-- Counts only while `com.instagram.android` is in use (via Accessibility)
+1. Install **Expo Go** on your phone  
+   - [iOS App Store](https://apps.apple.com/app/expo-go/id982107779)  
+   - [Google Play](https://play.google.com/store/apps/details?id=host.exp.exponent)
+2. On your computer, in this repo:
 
-Data stays on your phone. Nothing is uploaded.
+```bash
+npm install
+npx expo start
+```
 
-## Requirements
+3. Scan the QR code with:
+   - **iPhone**: Camera app → open in Expo Go  
+   - **Android**: Expo Go → Scan QR code  
+4. Log into Instagram inside the app and scroll — the bubble counts.
 
-- Android 8.0+ (API 26)
-- Instagram app installed
-- Two permissions you turn on once:
-  1. **Accessibility** → Insta Scroll (so it can see scroll events in Instagram)
-  2. **Display over other apps** (for the floating bubble)
+Phone and computer must be on the same Wi‑Fi (or use tunnel mode: `npx expo start --tunnel`).
 
-> iOS cannot host this kind of counter inside the Instagram app without jailbreak APIs, so this project targets Android.
+## What it tracks
 
-## Setup (Android Studio)
+- Scroll gestures while you browse Instagram **inside this app**
+- Today / all-time totals + last 7 days (stored on device with AsyncStorage)
+- Floating badge (tap for stats, minimize with – / +)
 
-1. Clone this repo and open the project root in Android Studio.
-2. Let Gradle sync, then Run on a phone or emulator with Instagram installed.
-3. Open **Insta Scroll** and tap:
-   - **Turn on Accessibility** → enable Insta Scroll
-   - **Allow floating widget** → allow overlay
-4. Open Instagram and scroll — the bubble should tick up.
+> This does **not** hook into the Instagram native app. Browse Instagram in Insta Scroll so scrolls can be counted. For a system overlay on the Instagram app itself, you’d need a custom native Android build.
 
-### Home screen widget
+## Scripts
 
-Long-press your home screen → **Widgets** → **Insta Scroll** → add the scrolls-today widget.
-
-## How counting works
-
-The accessibility service listens for `TYPE_VIEW_SCROLLED` events from Instagram, groups them into gestures (~220ms gap), and also converts larger scroll distances into extra units (~280px ≈ 1 scroll). Totals are stored in local `SharedPreferences` and mirrored to the overlay + widget.
+```bash
+npm start          # same as npx expo start
+npm run android    # open on Android emulator / device
+npm run ios        # open on iOS simulator (macOS)
+npm run typecheck  # tsc --noEmit
+```
 
 ## Project layout
 
 ```
-app/src/main/java/com/synectron/instascroll/
-  data/ScrollRepository.kt      # daily + lifetime stats
-  service/ScrollAccessibilityService.kt
-  service/OverlayService.kt     # floating bubble
-  ui/MainActivity.kt            # setup + stats
-  widget/ScrollAppWidgetProvider.kt
+src/app/           # Expo Router screens
+src/components/    # Scroll badge + stats sheet
+src/lib/           # storage + WebView scroll bridge
 ```
-
-## Privacy
-
-- No network calls
-- No account login
-- Accessibility is scoped to the Instagram package only

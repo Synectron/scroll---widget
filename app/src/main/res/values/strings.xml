@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Insta Scroll</string>
+    <string name="brand">Insta Scroll</string>
+    <string name="headline">Know every scroll.</string>
+    <string name="subhead">A live mobile counter for Instagram. Enable accessibility, then open Instagram and watch the bubble tick up.</string>
+    <string name="today_label">Scrolls today</string>
+    <string name="distance_format">%1$s scrolled</string>
+    <string name="total_scrolls_format">All-time: %1$d scrolls</string>
+    <string name="setup_title">Setup</string>
+    <string name="enable_accessibility">Turn on Accessibility</string>
+    <string name="enable_overlay">Allow floating widget</string>
+    <string name="show_floating_widget">Show floating widget</string>
+    <string name="week_title">Last 7 days</string>
+    <string name="reset_today">Reset today</string>
+    <string name="status_accessibility_on">Accessibility: on — counting Instagram scrolls</string>
+    <string name="status_accessibility_off">Accessibility: off — required to count scrolls in the Instagram app</string>
+    <string name="status_overlay_on">Overlay: allowed</string>
+    <string name="status_overlay_off">Overlay: not allowed — needed for the floating bubble</string>
+    <string name="overlay_label">Insta scrolls today</string>
+    <string name="minimize">Minimize</string>
+    <string name="widget_sub_today">scrolls today</string>
+    <string name="notification_channel">Scroll overlay</string>
+    <string name="notification_title">Insta Scroll is running</string>
+    <string name="notification_body">Floating counter is ready while you browse Instagram.</string>
+    <string name="accessibility_description">Counts scroll gestures inside Instagram and updates your floating widget and home-screen widget. Scroll data stays on your phone.</string>
+</resources>
